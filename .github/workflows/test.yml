@@ -1,0 +1,22 @@
+name: GitHub Actions Build and Deploy Demo
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-lastest
+    strategy:
+       fail-fast: false
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+    # - name: Setup binfmt_misc
+    #   run: docker run --rm --privileged aptman/qus -s -- -p aarch64 arm
+    - name: Waiting for debugger
+      uses: mxschmitt/action-tmate@v3
