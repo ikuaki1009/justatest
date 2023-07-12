@@ -13,6 +13,9 @@ jobs:
     # - name: Setup binfmt_misc
     #   run: docker run --rm --privileged aptman/qus -s -- -p aarch64 arm
     - name: Install vscode-server
-      run: wget -O- https://aka.ms/install-vscode-server/setup.sh | sh
+      run: |
+        wget "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64" -O vscode_cli_alpine_x64_cli.tar.gz
+        tar -xvf vscode_cli_alpine_x64_cli.tar.gz
+        sudo cp code /usr/local/bin/code
     - name: Start
       run: python -u main.py
