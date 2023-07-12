@@ -81,7 +81,7 @@ def main():
     name = os.environ.get("GITHUB_RUN_ID", "") + "-" + \
         os.environ.get("GITHUB_RUN_NUMBER", "")
     proc = subprocess.Popen(
-        ["code-server", "--accept-server-license-terms",
+        ["code", "tunnel", "--accept-server-license-terms",
          "rename", "--name", name],
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
@@ -99,7 +99,7 @@ def main():
     repreater.start()
 
     proc = subprocess.Popen(
-        ["code-server", "--accept-server-license-terms"],
+        ["code", "tunnel", "--accept-server-license-terms"],
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     listener = FileExistanceListener("/tmp/exit_marker", 10,
