@@ -3,19 +3,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-22.04
-    strategy:
-       fail-fast: false
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    # make sure these permissions are set so that
+    # VS Code can connect to the machine
+    permissions:
+      actions: read
+      contents: read
     steps:
-    - name: Checkout
-      uses: actions/checkout@main
-    # - name: Setup binfmt_misc
-    #   run: docker run --rm --privileged aptman/qus -s -- -p aarch64 arm
-    - name: Install vscode-server
-      run: |
-        wget "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64" -O vscode_cli_alpine_x64_cli.tar.gz
-        tar -xvf vscode_cli_alpine_x64_cli.tar.gz
-        sudo cp code /usr/local/bin/code
-    - name: Start
-      run: python -u main.py
+    # ...
+    - name: 🐛 Debug Build
+      uses: stateful/vscode-server-action@v1
